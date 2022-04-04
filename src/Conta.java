@@ -1,3 +1,7 @@
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
 public abstract class Conta implements IConta{
 
     private static int SEQUENCIAl_NUMERO = 1;
@@ -10,8 +14,10 @@ public abstract class Conta implements IConta{
     private int agencia;
     private int numero;
     private double saldo;
-    private static Cliente cliente;
+    private Cliente cliente;
+    @Setter
     private TipoConta tipoConta;
+
 
     public Conta(Cliente cliente) {
         this.cliente = cliente;
@@ -19,28 +25,15 @@ public abstract class Conta implements IConta{
         this.agencia = Agencia.getCodigoAgencia();
     }
 
-    public int getAgencia() {
-        return agencia;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public static Cliente getCliente() {
-        return cliente;
-    }
-
-    public TipoConta getTipoConta() {
-        return tipoConta;
-    }
-
-    public void setTipoConta(TipoConta tipoConta) {
-        this.tipoConta = tipoConta;
+    @Override
+    public String toString() {
+        return "Conta{" +
+                "agencia=" + agencia +
+                ", numero=" + numero +
+                ", saldo=" + saldo +
+                ", tipoConta=" + tipoConta +
+                "},\n" +
+                "cliente=" + cliente;
     }
 
     @Override
@@ -71,6 +64,13 @@ public abstract class Conta implements IConta{
         System.out.println("Saldo: " + this.getSaldo());
         System.out.println("========== Fim do Extrato ==========");
         System.out.println();
+    }
+
+    public String dadosGerais() {
+        System.out.println("========== CONSULTA DADOS GERAIS ==========");
+        return "dadosGerais{" +
+                this.toString() +
+                "}\n\n";
     }
 
 }

@@ -1,20 +1,26 @@
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Cliente extends Pessoa {
 
+    private String nome;
+    private String documento;
     private Endereco endereco;
 
-    public Endereco getEndereco() {
-        return endereco;
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "nome='" + nome + '\'' +
+                ", documento='" + documento + '\'' +
+                ", tipoPessoa=" + super.getTipoPessoa() +
+                ", tipoDocumento=" + super.getTipoDocumento() +
+                "},\n" +
+                "endereco=" + endereco;
     }
 
-    private void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    public void adicionaEndereco(Endereco endereco) throws Exception{
-        if(endereco == null) {
-            new NullPointerException("Endereço não pode ser nulo");
-        }
+    public void adicionaEndereco(Endereco endereco){
         this.setEndereco(endereco);
     }
-
 }
