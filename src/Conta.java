@@ -48,8 +48,14 @@ public abstract class Conta implements IConta{
 
     @Override
     public void transferir(double valor, Conta contaDestino) {
-        this.sacar(valor);
-        contaDestino.depositar(valor);
+        if(valor > this.saldo) {
+            System.out.println("====== TRANSFERÊNCIA INVÁLIDA ======");
+            System.out.println(String.format("Saldo insuficiente: %.2f", this.saldo));
+            System.out.println();
+        } else {
+            this.sacar(valor);
+            contaDestino.depositar(valor);
+        }
     }
 
     @Override
@@ -61,7 +67,7 @@ public abstract class Conta implements IConta{
         System.out.println("Tipo pessoa: " + this.getCliente().getTipoPessoa());
         System.out.println("Titular: " + this.getCliente().getNome());
         System.out.println(this.getCliente().getTipoDocumento() + ": " + this.getCliente().getDocumento());
-        System.out.println("Saldo: " + this.getSaldo());
+        System.out.println(String.format("Saldo: %.2f", this.getSaldo()));
         System.out.println("========== Fim do Extrato ==========");
         System.out.println();
     }

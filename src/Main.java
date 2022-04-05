@@ -12,7 +12,7 @@ public class Main {
 
         Conta cc = new ContaCorrente(cliente1);
         cc.setTipoConta(Conta.TipoConta.CONTA_CORRENTE);
-        cc.depositar(250);
+        cc.depositar(50);
 
         cc.extrato();
         System.out.println(cc.dadosGerais());
